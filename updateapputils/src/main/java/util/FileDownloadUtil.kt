@@ -33,6 +33,7 @@ internal object FileDownloadUtil {
      */
     fun download(
         url: String,
+        header:MutableMap<String,String>,
         fileSavePath: String,
         fileName: String?,
         onStart: () -> Unit = {},
@@ -55,6 +56,9 @@ internal object FileDownloadUtil {
                     setRequestProperty("Charset", "utf-8")
                     setRequestProperty("Accept-Encoding", "identity")
                     setRequestProperty("User-Agent", " Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36")
+                    header.forEach {
+                        setRequestProperty(it.key,it.value)
+                    }
                     connect()
                 }
 

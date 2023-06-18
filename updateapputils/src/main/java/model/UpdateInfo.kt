@@ -15,6 +15,8 @@ internal data class UpdateInfo(
     var updateContent: CharSequence = string(R.string.update_content),
     // apk 下载地址
     var apkUrl: String = "",
+    //请求头
+    var header:MutableMap<String,String> = mutableMapOf(),
     // 更新配置
     var config: UpdateConfig = UpdateConfig(),
     // ui配置

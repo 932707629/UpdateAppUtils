@@ -7,6 +7,9 @@ import android.view.View;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import constant.UiType;
 import listener.Md5CheckResultListener;
 import listener.UpdateDownloadListener;
@@ -43,10 +46,13 @@ public class JavaDemoActivity extends AppCompatActivity {
 
                 UiConfig uiConfig = new UiConfig();
                 uiConfig.setUiType(UiType.PLENTIFUL);
+                HashMap<String,String> header = new HashMap<String,String>();
+                header.put("token","你的token");
 
                 UpdateAppUtils
                         .getInstance()
                         .apkUrl(apkUrl)
+                        .addHeader(header)
                         .updateTitle(updateTitle)
                         .updateContent(updateContent)
                         .uiConfig(uiConfig)

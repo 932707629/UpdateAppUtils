@@ -2,9 +2,9 @@ package com.example.teprinciple.updateappdemo
 
 import android.os.Bundle
 import android.os.Environment
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
-import kotlinx.android.synthetic.main.check_md5_demo_activity.*
 import listener.Md5CheckResultListener
 import model.UpdateConfig
 import update.UpdateAppUtils
@@ -41,7 +41,7 @@ class CheckMd5DemoActivity : AppCompatActivity() {
         }
 
         // 正确签名
-        btn_signed.setOnClickListener {
+        findViewById<Button>(R.id.btn_signed).setOnClickListener {
             updateConfig.apply { apkSaveName = "signed" }
             UpdateAppUtils
                 .getInstance()
@@ -58,7 +58,7 @@ class CheckMd5DemoActivity : AppCompatActivity() {
         }
 
         // 错误签名
-        btn_not_signed.setOnClickListener {
+        findViewById<Button>(R.id.btn_not_signed).setOnClickListener {
             updateConfig.apply { apkSaveName = "not_signed" }
             UpdateAppUtils
                 .getInstance()

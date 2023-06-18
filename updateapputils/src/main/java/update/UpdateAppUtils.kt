@@ -49,6 +49,14 @@ object UpdateAppUtils {
     }
 
     /**
+     * 设置下载地址请求头
+     */
+    fun addHeader(header:MutableMap<String,String>): UpdateAppUtils {
+        updateInfo.header = header
+        return this
+    }
+
+    /**
      * 设置更新标题
      */
     fun updateTitle(title: CharSequence): UpdateAppUtils {

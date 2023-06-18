@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.os.Environment
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import constant.DownLoadBy
 import constant.UiType
-import kotlinx.android.synthetic.main.activity_main.*
 import listener.OnBtnClickListener
 import listener.OnInitUiListener
 import listener.UpdateDownloadListener
@@ -32,10 +32,11 @@ class MainActivity : AppCompatActivity() {
         UpdateAppUtils.init(this)
 
         // 基本使用
-        btn_basic_use.setOnClickListener {
+        findViewById<Button>(R.id.btn_basic_use).setOnClickListener {
             UpdateAppUtils
                 .getInstance()
                 .apkUrl(apkUrl)
+                .addHeader(mutableMapOf("token" to "你的token"))
                 .updateTitle(updateTitle)
                 .updateConfig(UpdateConfig(apkSaveName = "up_1.1"))
                 .uiConfig(UiConfig(uiType = UiType.SIMPLE))
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 浏览器下载
-        btn_download_by_browser.setOnClickListener {
+        findViewById<Button>(R.id.btn_download_by_browser).setOnClickListener {
 
             // 使用SpannableString
             val content = SpanUtils(this)
@@ -58,6 +59,7 @@ class MainActivity : AppCompatActivity() {
             UpdateAppUtils
                 .getInstance()
                 .apkUrl(apkUrl)
+                .addHeader(mutableMapOf("token" to "你的token"))
                 .updateTitle(updateTitle)
                 .updateContent(content)
                 .updateConfig(UpdateConfig().apply {
@@ -87,10 +89,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         // 自定义UI
-        btn_custom_ui.setOnClickListener {
+        findViewById<Button>(R.id.btn_custom_ui).setOnClickListener {
             UpdateAppUtils
                 .getInstance()
                 .apkUrl(apkUrl)
+                .addHeader(mutableMapOf("token" to "你的token"))
                 .updateTitle(updateTitle)
                 .updateContent(updateContent)
                 .updateConfig(UpdateConfig(alwaysShowDownLoadDialog = true))
@@ -106,17 +109,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         // java使用示例
-        btn_java_sample.setOnClickListener {
+        findViewById<Button>(R.id.btn_java_sample).setOnClickListener {
             startActivity(Intent(this, JavaDemoActivity::class.java))
         }
 
         // md5校验
-        btn_check_md5.setOnClickListener {
+        findViewById<Button>(R.id.btn_check_md5).setOnClickListener {
             startActivity(Intent(this, CheckMd5DemoActivity::class.java))
         }
 
         // 高级使用
-        btn_higher_level_use.setOnClickListener {
+        findViewById<Button>(R.id.btn_higher_level_use).setOnClickListener {
             // ui配置
             val uiConfig = UiConfig().apply {
                 uiType = UiType.PLENTIFUL
@@ -142,6 +145,7 @@ class MainActivity : AppCompatActivity() {
             UpdateAppUtils
                 .getInstance()
                 .apkUrl(apkUrl)
+                .addHeader(mutableMapOf("token" to "你的token"))
                 .updateTitle(updateTitle)
                 .updateContent(updateContent)
                 .updateConfig(updateConfig)

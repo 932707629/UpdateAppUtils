@@ -25,14 +25,17 @@ UpdateAppUtils2.0功能结构变化巨大，建议使用2.0以上版本；[2.0�
 ### 集成
 
 ```
-repositories {
-   jcenter()
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
 }
 ```
 
 Support
 ```
-implementation 'com.teprinciple:updateapputils:2.4.0'
+implementation 'com.github.932707629:UpdateAppUtils:2.4.0'
 ```
 
 AndroidX项目

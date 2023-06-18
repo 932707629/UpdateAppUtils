@@ -32,7 +32,7 @@ repositories {
 
 Support
 ```
-implementation 'com.teprinciple:updateapputils:2.3.0'
+implementation 'com.teprinciple:updateapputils:2.4.0'
 ```
 
 AndroidX项目

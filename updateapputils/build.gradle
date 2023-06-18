@@ -11,7 +11,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'me.soushin'
                 artifactId = 'updateapputils'
-                version = "2.0.4"
+                version = "2.4.0"
             }
         }
     }

@@ -33,15 +33,14 @@ allprojects {
 }
 ```
 
-Support
 ```
 implementation 'com.github.932707629:UpdateAppUtils:2.4.0'
 ```
 
-AndroidX项目
+之前项目版本
 ```
-注意，由于操作失误bintray 中updateapputilsX被我删掉，
-所以2.3.0以后使用updateapputilsx。之前的仍使用updateapputilsX
+//implementation 'com.teprinciple:updateapputils:2.3.0'
+
 //implementation 'com.teprinciple:updateapputilsX:2.2.1'
 implementation 'com.teprinciple:updateapputilsx:2.3.0'
 

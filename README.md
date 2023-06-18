@@ -15,6 +15,8 @@
 * 通知栏图片自定义
 * 支持修改是否每次显示弹窗（非强更）
 * 支持安装完成后自动删除安装包
+* 适配安卓13
+* 支持请求头设置
 
 UpdateAppUtils2.0功能结构变化巨大，建议使用2.0以上版本；[2.0以前版本文档](https://github.com/teprinciple/UpdateAppUtils/blob/master/readme/README_1.5.2.md)
 

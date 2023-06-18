@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
+// apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 33
     }
     buildTypes {
         release {
@@ -15,35 +15,42 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
-    // 忽略错误信息
+    buildFeatures{
+        dataBinding=true
+        viewBinding=true
+    }
     lintOptions {
         abortOnError false
     }
-
-    androidExtensions {
-        experimental = true
-    }
+//
+//    // 忽略错误信息
+//    lintOptions {
+//        abortOnError false
+//    }
+//
+//    androidExtensions {
+//        experimental = true
+//    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'com.liulishuo.filedownloader:library:1.7.7'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1'
 }
+//
+//repositories {
+//    mavenCentral()
+//}
 
-repositories {
-    mavenCentral()
-}
-
-publish {
-    userOrg = 'teprinciple'
-    groupId = 'com.teprinciple'
-    artifactId = 'updateapputilsx'
-    publishVersion = '2.3.0'
-    desc = 'A Simple library for Android update app'
-    website = 'https://github.com/teprinciple/UpdateAppUtils'
-}
+//publish {
+//    userOrg = 'teprinciple'
+//    groupId = 'com.teprinciple'
+//    artifactId = 'updateapputils'
+//    publishVersion = '2.3.0'
+//    desc = 'A Simple library for Android update app'
+//    website = 'https://github.com/teprinciple/UpdateAppUtils'
+//}

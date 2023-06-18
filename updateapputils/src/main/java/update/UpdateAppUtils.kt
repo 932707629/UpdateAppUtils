@@ -124,8 +124,13 @@ object UpdateAppUtils {
      * 检查更新
      */
     fun update() {
-        val keyName = (globalContext()?.packageName ?: "") + updateInfo.config.serverVersionName
 
+        if(globalContext() == null){
+            log("请先调用初始化init")
+            return
+        }
+
+        val keyName = (globalContext()?.packageName ?: "") + updateInfo.config.serverVersionName
         // 设置每次显示，设置本次显示及强制更新 每次都显示弹窗
         (updateInfo.config.alwaysShow || updateInfo.config.thisTimeShow || updateInfo.config.force).yes {
             UpdateAppActivity.launch()

@@ -1,7 +1,7 @@
 # UpdateAppUtils2.0
 
- [ ![](https://img.shields.io/badge/platform-android-green.svg) ](http://developer.android.com/index.html) 
- [ ![Download](https://api.bintray.com/packages/teprinciple/maven/updateapputils/images/download.svg) ](https://bintray.com/teprinciple/maven/updateapputils/_latestVersion)
+ [ ![](https://img.shields.io/badge/platform-android-green.svg) ](http://developer.android.com/index.html)
+ [![](https://jitpack.io/v/932707629/UpdateAppUtils.svg)](https://jitpack.io/#932707629/UpdateAppUtils)
 
 ### 一行代码，快速实现app在线下载更新  A simple library for Android update app
 

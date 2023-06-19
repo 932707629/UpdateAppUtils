@@ -116,6 +116,7 @@ internal object DownloadAppUtils {
         val downloadTask = FileDownloader.getImpl().create(updateInfo.apkUrl)
             .setPath(apkLocalPath)
 
+
         updateInfo.header.forEach {
             downloadTask.addHeader(it.key,it.value)
         }

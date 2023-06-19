@@ -9,9 +9,9 @@ afterEvaluate {
         publications {
             release(MavenPublication) {
                 from components.release
-                groupId = 'me.soushin'
+                groupId = 'com.teprinciple'
                 artifactId = 'updateapputils'
-                version = "2.4.0"
+                version = rootProject.versionName
             }
         }
     }
@@ -22,6 +22,9 @@ android {
     defaultConfig {
         minSdk rootProject.minSdk
         targetSdk rootProject.targetSdk
+
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -45,12 +48,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation(deps.appcompat)
-    implementation(deps.constraintlayout)
-    implementation(deps.kotlinstdlibjdk8)
-    implementation(deps.filedownloader)
-
+    compileOnly(deps.appcompat)
+    compileOnly(deps.constraintlayout)
+//    compileOnly(deps.kotlinstdlibjdk8)
     implementation(deps.kotlinxcoroutinesandroid)
+
+    api(deps.filedownloader)
 }
 //
 //repositories {

@@ -10,6 +10,7 @@ android {
         targetSdk rootProject.targetSdk
         versionCode rootProject.versionCode
         versionName rootProject.versionName
+
     }
     signingConfigs {
         config {
@@ -41,9 +42,9 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':updateapputils')
-    implementation(deps.appcompat)
-    implementation(deps.constraintlayout)
-    implementation(deps.kotlinstdlibjdk8)
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.21")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
 
     debugImplementation(deps.leakcanaryandroid)
 }

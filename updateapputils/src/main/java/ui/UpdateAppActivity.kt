@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.view.MotionEvent
 
@@ -190,15 +191,23 @@ internal class UpdateAppActivity : AppCompatActivity() {
      */
     private fun preDownLoad() {
         // 6.0 以下不用动态权限申请
-        (Build.VERSION.SDK_INT < Build.VERSION_CODES.M ).yes {
+        (Build.VERSION.SDK_INT < Build.VERSION_CODES.M).yes {
             download()
         }.no {
-            val writePermission = ContextCompat.checkSelfPermission(this, permission)
-            (writePermission == PackageManager.PERMISSION_GRANTED).yes {
-                download()
-            }.no {
-                // 申请权限
-                ActivityCompat.requestPermissions(this, arrayOf(permission), PERMISSION_CODE)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
+                if (Environment.isExternalStorageManager()){
+                    download()
+                } else {
+                    startActivity(Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION))
+                }
+            } else {
+                val writePermission = ContextCompat.checkSelfPermission(this, permission)
+                (writePermission == PackageManager.PERMISSION_GRANTED).yes {
+                    download()
+                }.no {
+                    // 申请权限
+                    ActivityCompat.requestPermissions(this, arrayOf(permission), PERMISSION_CODE)
+                }
             }
         }
     }
@@ -312,7 +321,7 @@ internal class UpdateAppActivity : AppCompatActivity() {
             it.startActivity(intent)
         }
 
-        private const val permission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+        private const val permission = Manifest.permission.READ_EXTERNAL_STORAGE
 
         private const val PERMISSION_CODE = 1001
     }

@@ -20,9 +20,7 @@ import update.UpdateAppUtils
 
 
 class MainActivity : AppCompatActivity() {
-    private val apkUrl = "https://cos.pgyer.com/0ff1f8a89ab274a3fd46602efea74386.apk?sign=081cab71c2405a3bd5ac9082af6249a7&t=1687183383&response-content-disposition=attachment%3Bfilename%3DLibChecker_2.1.4.dc4f3a6d.apk"
-//    private val apkUrl = "http://118.24.148.250:8080/yk/update_signed.apk"
-//    private val apkUrl = "https://github.com/AlexLiuSheng/CheckVersionLib/blob/master/library/src/main/java/com/allenliu/versionchecklib/utils/AppUtils.java"
+    private val apkUrl = "https://cos2.pgyer.com/03f0646838529f38240a00668c8e0df8.apk?sign=ea59edfc6396161832db87605e6b8724&sign2=cecf0e5a34d457a6ce29c7f698574590&t=1720704124&response-content-disposition=attachment%3Bfilename%3D%22%E6%B2%AA%E7%A2%B3%E8%A1%8C_1.0.6.apk"
     private val updateTitle = "发现新版本V2.0.0"
     private val updateContent = "1、Kotlin重构版\n2、支持自定义UI\n3、增加md5校验\n4、更多功能等你探索"
 

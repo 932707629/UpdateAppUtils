@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
     private val apkUrl = "https://c10490a5350e1a789239074051f764a2.dlied1.cdntips.net/download.mail.qq.com/apk/qqmail_android_6.5.4.10161662.731_55.apk"
 //    private val apkUrl = "https://res.126.net/dl/client/androidmail/dashi/100/mail.apk"
 //    private val apkUrl = "https://appdownload.mail.10086.cn/event/static/sys/20200723/PE-V10.2.6-9048001.apk"
-
     private val updateTitle = "发现新版本V2.0.0"
     private val updateContent = "1、Kotlin重构版\n2、支持自定义UI\n3、增加md5校验\n4、更多功能等你探索"
 
@@ -141,7 +140,7 @@ class MainActivity : AppCompatActivity() {
                 isShowNotification = true
                 notifyImgRes = R.drawable.ic_logo
                 apkSavePath = Environment.getExternalStorageDirectory().absolutePath + "/teprinciple"
-                apkSaveName = "teprinciple"
+                apkSaveName = "teprinciple-${System.currentTimeMillis()}"
             }
 
             UpdateAppUtils

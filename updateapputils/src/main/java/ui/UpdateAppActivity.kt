@@ -26,6 +26,7 @@ import update.DownloadAppUtils
 import update.UpdateAppService
 import update.UpdateAppUtils
 import util.AlertDialogUtil
+import util.PermissionUtils
 import util.SPUtil
 
 /**
@@ -193,20 +194,19 @@ internal class UpdateAppActivity : AppCompatActivity() {
         // 6.0 以下不用动态权限申请
         (Build.VERSION.SDK_INT < Build.VERSION_CODES.M).yes {
             download()
-        }.no {
+        }.no {///安卓6以上需要申请权限
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-                if (Environment.isExternalStorageManager()){
+                (Environment.isExternalStorageManager()).yes {
                     download()
-                } else {
+                }.no {
                     startActivity(Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION))
                 }
-            } else {
-                val writePermission = ContextCompat.checkSelfPermission(this, permission)
-                (writePermission == PackageManager.PERMISSION_GRANTED).yes {
+            } else {///安卓11以下
+                (PermissionUtils.isPermissionGranted(permissions,this)).yes {
                     download()
                 }.no {
                     // 申请权限
-                    ActivityCompat.requestPermissions(this, arrayOf(permission), PERMISSION_CODE)
+                    PermissionUtils.requestPermissions(this@UpdateAppActivity, permissions)
                 }
             }
         }
@@ -291,21 +291,23 @@ internal class UpdateAppActivity : AppCompatActivity() {
      */
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        when (requestCode) {
-            PERMISSION_CODE -> (grantResults.getOrNull(0) == PackageManager.PERMISSION_GRANTED).yes {
+        PermissionUtils.onRequestPermissionsResult(requestCode,permissions,grantResults,object :PermissionUtils.PermissionListener{
+            override fun onPermissionGranted() {
                 download()
-            }.no {
-                ActivityCompat.shouldShowRequestPermissionRationale(this, permission).no {
+            }
+
+            override fun onPermissionDenied() {
+                PermissionUtils.shouldShowRationale(permissions,this@UpdateAppActivity).no {
                     // 显示无权限弹窗
-                    AlertDialogUtil.show(this, getString(R.string.no_storage_permission), onSureClick = {
-                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                        intent.data = Uri.parse("package:$packageName") // 根据包名打开对应的设置界面
+                    AlertDialogUtil.show(this@UpdateAppActivity, getString(R.string.no_storage_permission), onSureClick = {
+                        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                            data = Uri.parse("package:$packageName") // 根据包名打开对应的设置界面
+                        }
                         startActivity(intent)
                     })
                 }
             }
-        }
+        })
     }
 
     override fun finish() {
@@ -321,8 +323,6 @@ internal class UpdateAppActivity : AppCompatActivity() {
             it.startActivity(intent)
         }
 
-        private const val permission = Manifest.permission.READ_EXTERNAL_STORAGE
-
-        private const val PERMISSION_CODE = 1001
+        private val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
     }
 }

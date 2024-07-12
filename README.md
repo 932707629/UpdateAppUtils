@@ -188,7 +188,7 @@ implementation 'com.teprinciple:updateapputilsx:2.3.0'
 | downloadFailText      | 下载出错时，下载按钮及通知栏标题 | 下载出错，点击重试   |
 
 ### Demo体验
-<img src="https://github.com/teprinciple/UpdateAppUtils/blob/master/img/demo.png" width="220">
+<img src="https://github.com/932707629/UpdateAppUtils/blob/master/img/demo.png" width="220">
 
 ### 更新日志
 

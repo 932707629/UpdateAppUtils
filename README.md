@@ -35,7 +35,7 @@ allprojects {
 ```
 
 ```
-implementation 'com.github.932707629:UpdateAppUtils:2.5.1'
+implementation 'com.github.932707629:UpdateAppUtils:2.5.2'
 ```
 
 之前项目版本

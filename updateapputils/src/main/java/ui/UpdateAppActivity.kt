@@ -199,7 +199,14 @@ internal class UpdateAppActivity : AppCompatActivity() {
                 (Environment.isExternalStorageManager()).yes {
                     download()
                 }.no {
-                    startActivity(Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION))
+                    try {
+                        val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                        intent.setData(Uri.fromParts("package", packageName, null));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }catch (e: Exception){
+                        startActivity(Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION))
+                    }
                 }
             } else {///安卓11以下
                 (PermissionUtils.isPermissionGranted(permissions,this)).yes {

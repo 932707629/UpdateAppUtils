@@ -192,6 +192,8 @@ implementation 'com.teprinciple:updateapputilsx:2.3.0'
 
 ### 更新日志
 
+#### 2.6.1
+* 适配安卓13通知栏权限
 #### 2.3.0
 * 修复部分手机context空指针异常
 ##### [更多历史版本](https://github.com/teprinciple/UpdateAppUtils/blob/master/readme/version.md)

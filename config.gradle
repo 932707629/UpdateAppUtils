@@ -4,8 +4,8 @@ ext {
     minSdk = 19
     targetSdk = 33
 
-    versionCode = 252
-    versionName = '2.5.2'
+    versionCode = 260
+    versionName = '2.6.0'
 
     deps = [
             "appcompat":"androidx.appcompat:appcompat:1.4.0",

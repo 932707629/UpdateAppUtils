@@ -48,8 +48,8 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly(deps.appcompat)
-    compileOnly(deps.constraintlayout)
+    implementation(deps.appcompat)
+    implementation(deps.constraintlayout)
 //    compileOnly(deps.kotlinstdlibjdk8)
     implementation(deps.kotlinxcoroutinesandroid)
 

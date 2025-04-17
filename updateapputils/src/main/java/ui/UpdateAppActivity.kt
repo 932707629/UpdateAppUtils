@@ -2,6 +2,7 @@ package ui
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.content.BroadcastReceiver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -197,7 +198,16 @@ internal class UpdateAppActivity : AppCompatActivity() {
         }.no {///安卓6以上需要申请权限
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
                 (Environment.isExternalStorageManager()).yes {
-                    download()
+                    ///适配安卓13通知栏权限获取问题
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                        if(PermissionUtils.isPermissionGranted(Manifest.permission.POST_NOTIFICATIONS,this)){
+                            download()
+                        } else {
+                            PermissionUtils.requestPermissions(this, arrayOf(Manifest.permission.POST_NOTIFICATIONS))
+                        }
+                    } else {
+                        download()
+                    }
                 }.no {
                     try {
                         val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
@@ -330,6 +340,11 @@ internal class UpdateAppActivity : AppCompatActivity() {
             it.startActivity(intent)
         }
 
-        private val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE)
+        private val permissions = arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE)
     }
+
+
+
+
 }
